@@ -1,0 +1,55 @@
+﻿<Window x:Class="PastaneMenuVeSiparis.SunumKatmani.Views.KategoriViews.KategoriView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PastaneMenuVeSiparis.SunumKatmani.Views.KategoriViews"
+        mc:Ignorable="d"
+        Title="KategoriView"
+        Width="400"
+        SizeToContent="Height"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Kategori Bilgileri"
+               HorizontalAlignment="Center"
+               Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+               Margin="0 20"/>
+
+
+        <TextBox x:Name="txtAd"
+             Grid.Row="1"
+             Margin="3 20"
+             materialDesign:HintAssist.Hint="Kategori Adı"
+             Style="{StaticResource MaterialDesignTextBoxBase}"
+             VerticalAlignment="Center"
+             Text="{Binding Ad, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+        
+        <StackPanel Grid.Row="2"
+                Orientation="Horizontal"
+                HorizontalAlignment="Right">
+            <Button Content="İptal"
+                Margin="0 10 5 10"
+                Style="{StaticResource MaterialDesignFlatAccentButton}"
+                IsCancel="True"/>
+            <Button Content="Tamam"
+                Margin="5 10 5 10"
+                Style="{StaticResource MaterialDesignFlatButton}"
+                IsDefault="True"
+                Click="Button_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

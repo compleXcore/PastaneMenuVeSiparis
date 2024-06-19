@@ -1,0 +1,120 @@
+﻿<Window x:Class="PastaneMenuVeSiparis.SunumKatmani.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PastaneMenuVeSiparis.SunumKatmani"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         Background="{DynamicResource MaterialDesignPaper}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+         WindowStyle="None"
+        AllowsTransparency="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone Mode="PrimaryDark"
+                              Padding="16"
+                              CornerRadius="3"
+                              MouseLeftButtonDown="ColorZone_MouseLeftButtonDown"
+                              materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                              Margin="2">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal"
+                        DockPanel.Dock="Right">
+                    <Button x:Name="btnSimge" 
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                        Click="btnSimge_Click">
+                        <materialDesign:PackIcon Kind="Minus"/>
+                    </Button>
+                    <Button x:Name="btnTamEkran" 
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                        Click="btnTamEkran_Click"
+                        Margin="5,0">
+                        <materialDesign:PackIcon Kind="DockWindow"/>
+                    </Button>
+                    <Button x:Name="btnKapat" 
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}"
+                        Click="btnKapat_Click">
+                        <materialDesign:PackIcon Kind="Close"/>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ToggleButton x:Name="menuOpenCloseButton"
+                          Style="{DynamicResource MaterialDesignHamburgerToggleButton}"/>
+                    <TextBlock x:Name="txtTitle" VerticalAlignment="Center" 
+                       Margin="16 0 0 0">
+
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+
+
+        <materialDesign:DrawerHost x:Name="myDrawer"
+                               Grid.Row="1" 
+                               IsLeftDrawerOpen="{Binding IsChecked, ElementName=menuOpenCloseButton}"
+                               BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DrawerHost.Style>
+                <Style TargetType="materialDesign:DrawerHost"
+               BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                    <Style.Triggers>
+                        <DataTrigger
+                    Binding="{Binding IsChecked, ElementName=BackgroundToggle}"
+                    Value="True">
+                            <Setter Property="OverlayBackground"
+                            Value="{DynamicResource PrimaryHueMidBrush}" />
+
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:DrawerHost.Style>
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Margin="16">
+                    <TextBlock Margin="4"
+                           HorizontalAlignment="Center">MENU
+                    </TextBlock>
+                    <Separator Margin="0 5"/>
+
+                    <Button x:Name="masalar"
+                        Content="Masalar"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Click="Masalar"/>
+                    <Button x:Name="urun" Content="Ürün Listesi" Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Click="Urunler"/>
+                    <Button x:Name="kategori"
+                        Content="Kategori Listesi"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Click="Kategoriler"/>
+                    <Button x:Name="siparisler"
+                        Content="Siparis Listesi"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Click="Siparisler"/>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+            <Grid>
+                <Frame x:Name="mainFrame" 
+                   Source="/Views/MasaViews/Masalar.xaml"
+                   NavigationUIVisibility="Hidden"/>
+            </Grid>
+        </materialDesign:DrawerHost>
+
+    </Grid>
+</Window>
